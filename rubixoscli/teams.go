@@ -93,3 +93,17 @@ func (inst *Client) UpdateTeamMember(teamUUID string, memberUUIDs []string) ([]m
 	out = *resp.Result().(*[]model.Team)
 	return out, nil
 }
+
+func (inst *Client) AttachViews(teamUUID string, viewUUIDs []string) ([]model.View, error) {
+	url := fmt.Sprintf("/api/teams/%s/views", teamUUID)
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetBody(viewUUIDs).
+		SetResult(&[]model.View{}).
+		Put(url))
+	if err != nil {
+		return nil, err
+	}
+	var out []model.View
+	out = *resp.Result().(*[]model.View)
+	return out, nil
+}

@@ -7,6 +7,21 @@ import (
 	"github.com/NubeIO/rubix-os/nresty"
 )
 
+
+func (inst *Client) GetViews() ([]model.View, error) {
+	url := "/api/views"
+
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetResult(&[]model.View{}).
+		Get(url))
+	if err != nil {
+		return nil, err
+	}
+	
+	out := *resp.Result().(*[]model.View)
+	return out, nil
+}
+
 func (inst *Client) UpdateViewName(viewIDName string, name string) (*model.View, error) {
 	url := fmt.Sprintf("/api/views/%s", viewIDName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
