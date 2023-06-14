@@ -23,6 +23,7 @@ require (
 require (
 	github.com/NubeIO/lib-files v1.0.0 // indirect
 	github.com/NubeIO/lib-schema v0.2.15 // indirect
+	github.com/NubeIO/nubeio-rubix-lib-helpers-go v0.2.7 // indirect
 	github.com/NubeIO/rubix-assist v0.10.6 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
