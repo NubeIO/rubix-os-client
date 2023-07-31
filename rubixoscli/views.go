@@ -7,9 +7,8 @@ import (
 	"github.com/NubeIO/rubix-os/nresty"
 )
 
-
 func (inst *Client) GetViews() ([]model.View, error) {
-	url := "/api/views"
+	url := "/api/views?with_widgets=true"
 
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetResult(&[]model.View{}).
@@ -17,7 +16,7 @@ func (inst *Client) GetViews() ([]model.View, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	out := *resp.Result().(*[]model.View)
 	return out, nil
 }
@@ -160,7 +159,7 @@ func (inst *Client) DeleteView(viewIDName string) (*bool, error) {
 }
 
 func (inst *Client) GetView(viewIDName string) (*model.View, error) {
-	url := fmt.Sprintf("/api/views/%s", viewIDName)
+	url := fmt.Sprintf("/api/views/%s?with_widgets=true", viewIDName)
 
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetResult(&model.View{}).

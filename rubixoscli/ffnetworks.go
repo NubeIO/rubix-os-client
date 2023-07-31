@@ -3,16 +3,15 @@ package rubixoscli
 import (
 	"errors"
 	"fmt"
-	"github.com/NubeIO/rubix-os/interfaces"
 
 	"github.com/NubeIO/nubeio-rubix-lib-models-go/pkg/v1/model"
 	"github.com/NubeIO/rubix-os/nresty"
 )
 
-func (inst *Client) FFGetNetworks(hostIDName string, withDevices bool, overrideUrl ...string) ([]model.Network, error) {
-	url := fmt.Sprintf("/proxy/ros/api/networks?with_tags=true&with_meta_tags=true")
+func (inst *Client) FFGetNetworks(hostIDName string, withDevices bool, showCloneNetworks bool, overrideUrl ...string) ([]model.Network, error) {
+	url := fmt.Sprintf("/proxy/ros/api/networks?with_tags=true&with_meta_tags=true&show_clone_networks=%t", showCloneNetworks)
 	if withDevices == true {
-		url = fmt.Sprintf("/proxy/ros/api/networks?with_devices=true&with_tags=true&with_meta_tags=true")
+		url = fmt.Sprintf("/proxy/ros/api/networks?with_devices=true&with_tags=true&with_meta_tags=true&show_clone_networks=%t", showCloneNetworks)
 	}
 	if buildUrl(overrideUrl...) != "" {
 		url = buildUrl(overrideUrl...)
@@ -138,19 +137,6 @@ func (inst *Client) FFEditNetwork(hostIDName, uuid string, body *model.Network) 
 		return nil, err
 	}
 	return resp.Result().(*model.Network), nil
-}
-
-func (inst *Client) SyncNetworks(hostIDName string) (*interfaces.Message, error) {
-	url := "/proxy/ros/api/networks/sync?with_devices=true&with_points=true&with_tags=true&with_meta_tags=true"
-	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
-		SetHeader("host-uuid", hostIDName).
-		SetHeader("host-name", hostIDName).
-		SetResult(&interfaces.Message{}).
-		Get(url))
-	if err != nil {
-		return nil, err
-	}
-	return resp.Result().(*interfaces.Message), nil
 }
 
 func (inst *Client) FFGetPollingQueueStatisticsByPluginName(hostIDName, pluginName, networkName string) (*model.PollQueueStatistics, error) {

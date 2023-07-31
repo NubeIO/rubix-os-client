@@ -30,8 +30,6 @@ github.com/NubeIO/rubix-assist v0.10.6 h1:IVmBX4Sc2H+Qhif2oBuKu31sHraC0ojq14AULW
 github.com/NubeIO/rubix-assist v0.10.6/go.mod h1:nmzVIyMqeFy3DEoVGsI6SebK7HkbAjUiIE6+lrLSDLE=
 github.com/NubeIO/rubix-os v0.0.21 h1:qzBloM0JxIoEo5kF/UBmjSwk8qmZwwo4bJUDINrDBKc=
 github.com/NubeIO/rubix-os v0.0.21/go.mod h1:01Qorsm0opKOuFdZZ2mZ7vxrgvP2/RJha7TTWcXj29k=
-github.com/NubeIO/rubix-registry-go v1.0.0 h1:EOklfvV3NP+zF6DmkRO4OmRttTMdN26LZSOEH35hhd0=
-github.com/NubeIO/rubix-registry-go v1.0.0/go.mod h1:nz/USWqKNI5Gp6hTNW5V8/Md284fo4ii88gMnqQ7Y2E=
 github.com/NubeIO/rubix-ui v0.0.2 h1:NBNrb2bx+pCPXerTEPzqqJiVJuTD449LdLrVUEhkd0Y=
 github.com/NubeIO/rubix-ui v0.0.2/go.mod h1:cgruac8ITEApDn+AMVO75A5+QJlWy/gA7X1OWfYvOME=
 github.com/PuerkitoBio/goquery v1.6.0/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
