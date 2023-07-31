@@ -9,11 +9,10 @@ require (
 	github.com/NubeIO/lib-system v0.0.1
 	github.com/NubeIO/lib-systemctl-go v0.3.1
 	github.com/NubeIO/lib-ufw v0.0.3
-	github.com/NubeIO/lib-uuid v0.0.3
-	github.com/NubeIO/nubeio-rubix-lib-auth-go v1.2.0
-	github.com/NubeIO/nubeio-rubix-lib-models-go v1.7.0
-	github.com/NubeIO/rubix-os v0.0.2
-	github.com/NubeIO/rubix-registry-go v1.0.0
+	github.com/NubeIO/nubeio-rubix-lib-auth-go v1.3.0
+	github.com/NubeIO/nubeio-rubix-lib-helpers-go v0.2.7
+	github.com/NubeIO/nubeio-rubix-lib-models-go v1.7.9
+	github.com/NubeIO/rubix-os v0.0.21
 	github.com/NubeIO/rubix-ui v0.0.2
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/sirupsen/logrus v1.9.3
@@ -23,7 +22,6 @@ require (
 require (
 	github.com/NubeIO/lib-files v1.0.0 // indirect
 	github.com/NubeIO/lib-schema v0.2.15 // indirect
-	github.com/NubeIO/nubeio-rubix-lib-helpers-go v0.2.7 // indirect
 	github.com/NubeIO/rubix-assist v0.10.6 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
