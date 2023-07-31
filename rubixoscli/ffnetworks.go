@@ -152,7 +152,7 @@ func (inst *Client) FFGetPollingQueueStatisticsByPluginName(hostIDName, pluginNa
 	return resp.Result().(*model.PollQueueStatistics), nil
 }
 
-func (inst *Client) FFGetPluginSchemaNetwork(hostIDName, pluginName string) (interface{}, error) {
+func (inst *Client) FFGetPluginSchemaNetwork(hostIDName, pluginName string) ([]byte, error) {
 	url := fmt.Sprintf("/proxy/ros/api/plugins/api/%s/schema/json/network", pluginName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
@@ -161,5 +161,5 @@ func (inst *Client) FFGetPluginSchemaNetwork(hostIDName, pluginName string) (int
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result(), nil
+	return resp.Body(), nil
 }

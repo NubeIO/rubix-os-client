@@ -85,7 +85,7 @@ func (inst *Client) DeleteDevice(hostIDName, uuid string) (bool, error) {
 	return true, nil
 }
 
-func (inst *Client) FFGetPluginSchemaDevice(hostIDName, pluginName string) (interface{}, error) {
+func (inst *Client) FFGetPluginSchemaDevice(hostIDName, pluginName string) ([]byte, error) {
 	url := fmt.Sprintf("/proxy/ros/api/plugins/api/%s/schema/json/device", pluginName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
@@ -94,5 +94,5 @@ func (inst *Client) FFGetPluginSchemaDevice(hostIDName, pluginName string) (inte
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result(), nil
+	return resp.Body(), nil
 }

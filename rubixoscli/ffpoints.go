@@ -121,7 +121,7 @@ func (inst *Client) EditPoint(hostIDName, uuid string, body *model.Point) (*mode
 	return resp.Result().(*model.Point), nil
 }
 
-func (inst *Client) FFGetPluginSchemaPoint(hostIDName, pluginName string) (interface{}, error) {
+func (inst *Client) FFGetPluginSchemaPoint(hostIDName, pluginName string) ([]byte, error) {
 	url := fmt.Sprintf("/proxy/ros/api/plugins/api/%s/schema/json/point", pluginName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
@@ -130,5 +130,5 @@ func (inst *Client) FFGetPluginSchemaPoint(hostIDName, pluginName string) (inter
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result(), nil
+	return resp.Body(), nil
 }
