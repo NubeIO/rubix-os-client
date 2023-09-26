@@ -48,7 +48,7 @@ func (inst *Client) GetAlerts() ([]model.Alert, error) {
 }
 
 func (inst *Client) GetAlertsByHost(hostIDName string) ([]model.Alert, error) {
-	path := fmt.Sprintf("%s/host/%s", Paths.Alerts.Path, hostIDName)
+	path := fmt.Sprintf("%s/host/%s?with_teams=true", Paths.Alerts.Path, hostIDName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
 		SetHeader("host-name", hostIDName).
