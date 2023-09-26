@@ -62,7 +62,7 @@ func (inst *Client) SelectAllRules(hostIDName string) ([]RQLRule, error) {
 }
 
 func (inst *Client) SelectRule(hostIDName, uuid string) (*RQLRule, error) {
-	url := fmt.Sprintf("/api/modules/module-core-rql/rules%s", uuid)
+	url := fmt.Sprintf("/api/modules/module-core-rql/rules/%s", uuid)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
 		SetHeader("host-name", hostIDName).
@@ -75,12 +75,12 @@ func (inst *Client) SelectRule(hostIDName, uuid string) (*RQLRule, error) {
 }
 
 func (inst *Client) RunExistingRule(hostIDName, uuid string) (*RQLRuleResponse, error) {
-	url := fmt.Sprintf("/api/modules/module-core-rql/rules%s", uuid)
+	url := fmt.Sprintf("/api/modules/module-core-rql/rules/run/%s", uuid)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
 		SetHeader("host-name", hostIDName).
 		SetResult(&RQLRuleResponse{}).
-		Get(url))
+		Post(url))
 	if err != nil {
 		return nil, err
 	}

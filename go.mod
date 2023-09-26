@@ -6,13 +6,13 @@ require (
 	github.com/NubeIO/lib-date v0.0.6
 	github.com/NubeIO/lib-dhcpd v0.0.2
 	github.com/NubeIO/lib-networking v0.1.0
-	github.com/NubeIO/lib-system v0.0.1
+	github.com/NubeIO/lib-system v0.0.2
 	github.com/NubeIO/lib-systemctl-go v0.3.1
 	github.com/NubeIO/lib-ufw v0.0.3
-	github.com/NubeIO/nubeio-rubix-lib-auth-go v1.3.0
+	github.com/NubeIO/nubeio-rubix-lib-auth-go v1.3.1
 	github.com/NubeIO/nubeio-rubix-lib-helpers-go v0.2.7
-	github.com/NubeIO/nubeio-rubix-lib-models-go v1.7.9
-	github.com/NubeIO/rubix-os v0.0.21
+	github.com/NubeIO/nubeio-rubix-lib-models-go v1.9.4
+	github.com/NubeIO/rubix-os v0.0.56
 	github.com/NubeIO/rubix-ui v0.0.2
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/sirupsen/logrus v1.9.3
@@ -39,5 +39,5 @@ require (
 	golang.org/x/sys v0.6.0 // indirect
 	gorm.io/datatypes v1.0.6 // indirect
 	gorm.io/driver/mysql v1.3.2 // indirect
-	gorm.io/gorm v1.23.5 // indirect
+	gorm.io/gorm v1.23.10 // indirect
 )

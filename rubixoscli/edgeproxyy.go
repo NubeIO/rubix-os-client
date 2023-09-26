@@ -8,7 +8,7 @@ import (
 )
 
 func (inst *Client) EdgeSystemCtlAction(hostIDName, serviceName string, action interfaces.Action) (*interfaces.Message, error) {
-	url := fmt.Sprintf("/proxy/ros/api/systemctl/%s?unit=%s", action, serviceName)
+	url := fmt.Sprintf("/proxy/eb/api/systemctl/%s?unit=%s", action, serviceName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
 		SetHeader("host-name", hostIDName).
@@ -21,7 +21,7 @@ func (inst *Client) EdgeSystemCtlAction(hostIDName, serviceName string, action i
 }
 
 func (inst *Client) EdgeSystemCtlState(hostIDName, serviceName string) (*systemctl.SystemState, error) {
-	url := fmt.Sprintf("/proxy/ros/api/systemctl/state?unit=%s", serviceName)
+	url := fmt.Sprintf("/proxy/eb/api/systemctl/state?unit=%s", serviceName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("host-uuid", hostIDName).
 		SetHeader("host-name", hostIDName).

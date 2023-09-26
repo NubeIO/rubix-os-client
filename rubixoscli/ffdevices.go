@@ -45,7 +45,7 @@ func (inst *Client) GetDevice(hostIDName, uuid string, withPoints ...bool) (*mod
 	url := fmt.Sprintf("/proxy/ros/api/devices/%s?with_tags=true&with_meta_tags=true", uuid)
 	if len(withPoints) > 0 {
 		if withPoints[0] == true {
-			url = fmt.Sprintf("/proxy/ros/api/devices/%s?with_points=true&with_tags=true&with_meta_tags=true", uuid)
+			url = fmt.Sprintf("/proxy/ros/api/devices/%s?with_points=true&with_tags=true&with_meta_tags=true&with_priority=true", uuid)
 		}
 	}
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
@@ -83,16 +83,4 @@ func (inst *Client) DeleteDevice(hostIDName, uuid string) (bool, error) {
 		return false, err
 	}
 	return true, nil
-}
-
-func (inst *Client) FFGetPluginSchemaDevice(hostIDName, pluginName string) ([]byte, error) {
-	url := fmt.Sprintf("/proxy/ros/api/plugins/api/%s/schema/json/device", pluginName)
-	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
-		SetHeader("host-uuid", hostIDName).
-		SetHeader("host-name", hostIDName).
-		Get(url))
-	if err != nil {
-		return nil, err
-	}
-	return resp.Body(), nil
 }
