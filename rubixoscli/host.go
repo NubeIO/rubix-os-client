@@ -103,16 +103,16 @@ func (inst *Client) DeleteHostComments(uuid string) (*Message, error) {
 	return resp.Result().(*Message), nil
 }
 
-func (inst *Client) UpdateHostTags(hostUUID string, body []*model.HostTag) ([]model.HostTag, error) {
-	path := fmt.Sprintf("%s/tags/host_uuid/%s", Paths.Hosts.Path, hostUUID)
+func (inst *Client) UpdateHostTags(hostUUID string, body []*model.Tag) ([]model.Tag, error) {
+	path := fmt.Sprintf("%s/%s/tags", Paths.Hosts.Path, hostUUID)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetBody(body).
-		SetResult(&[]model.HostTag{}).
+		SetResult(&[]model.Tag{}).
 		Put(path))
 	if err != nil {
 		return nil, err
 	}
-	var out []model.HostTag
-	out = *resp.Result().(*[]model.HostTag)
+	var out []model.Tag
+	out = *resp.Result().(*[]model.Tag)
 	return out, nil
 }
