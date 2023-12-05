@@ -126,8 +126,6 @@ var Paths = struct {
 	Ping:         Path{Path: "/api/system/ping"},
 	Groups:       Path{Path: "/api/groups"},
 	Locations:    Path{Path: "/api/locations"},
-	Edge:         Path{Path: "/api/edgeapi"},
-	Apps:         Path{Path: "/api/edgeapi/apps"},
 	Tasks:        Path{Path: "/api/tasks"},
 	Transactions: Path{Path: "/api/transactions"},
 	System:       Path{Path: "/api/system"},
