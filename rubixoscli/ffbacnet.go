@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/NubeIO/nubeio-rubix-lib-models-go/pkg/v1/model"
+	"github.com/NubeIO/nubeio-rubix-lib-models-go/model"
 	"github.com/NubeIO/rubix-os/nresty"
 )
 
@@ -248,6 +248,29 @@ func (inst *Client) WriteBacnetPriorityArray(hostUUID, pointUUID string, body in
 	url := fmt.Sprintf("/host/ros/api/plugins/api/bacnetmaster/%s/write/pri", pointUUID)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("X-Host", hostUUID).
+		SetBody(body).
+		SetResult(&PriArray{}).
+		Post(url))
+	if err != nil {
+		return nil, err
+	}
+	out := resp.Result().(*PriArray)
+	if out != nil {
+		return out, nil
+	}
+	return nil, nil
+}
+
+type WriteBacnetPriorityArrayNull struct {
+	Timeout        int `json:"timeout"`
+	PriorityNumber int `json:"priority_number"`
+}
+
+func (inst *Client) WriteBacnetPriorityArrayNull(hostUUID, pointUUID string, body *WriteBacnetPriorityArrayNull) (*PriArray, error) {
+	url := fmt.Sprintf("/host/ros/api/plugins/api/bacnetmaster/%s/write/pri/null", pointUUID)
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetHeader("X-Host", hostUUID).
+		SetBody(body).
 		SetResult(&PriArray{}).
 		Post(url))
 	if err != nil {
