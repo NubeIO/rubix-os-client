@@ -126,19 +126,19 @@ func (inst *Client) FFGetNetworkByPluginName(hostUUID, pluginName string, withPo
 	return resp.Result().(*model.Network), nil
 }
 
-func (inst *Client) FFGetNetworksByPluginName(hostUUID, pluginName string, withPoints ...bool) (*model.Network, error) {
+func (inst *Client) FFGetNetworksByPluginName(hostUUID, pluginName string, withPoints ...bool) (*[]model.Network, error) {
 	url := fmt.Sprintf("/host/ros/api/networks/plugin-name/%s/all?with_tags=true&with_meta_tags=true", pluginName)
 	if len(withPoints) > 0 {
-		url = fmt.Sprintf("/host/ros/api/networks/plugin-name/%s?with_points=true&with_tags=true&with_meta_tags=true", pluginName)
+		url = fmt.Sprintf("/host/ros/api/networks/plugin-name/%s/all?with_points=true&with_tags=true&with_meta_tags=true", pluginName)
 	}
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("X-Host", hostUUID).
-		SetResult(&model.Network{}).
+		SetResult(&[]model.Network{}).
 		Get(url))
 	if err != nil {
 		return nil, err
 	}
-	return resp.Result().(*model.Network), nil
+	return resp.Result().(*[]model.Network), nil
 }
 
 func (inst *Client) FFAddNetwork(hostUUID string, body *model.Network, restartPlugin bool) (*model.Network, error) {
