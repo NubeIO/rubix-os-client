@@ -126,6 +126,17 @@ func (inst *Client) FFGetPluginSchemaPoint(hostUUID, pluginName string) ([]byte,
 	return resp.Body(), nil
 }
 
+func (inst *Client) GetModuleSchemaPoint(hostUUID, pluginName string) ([]byte, error) {
+	url := fmt.Sprintf("/host/ros/api/modules/%s/api/points/schema", pluginName)
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetHeader("X-Host", hostUUID).
+		Get(url))
+	if err != nil {
+		return nil, err
+	}
+	return resp.Body(), nil
+}
+
 func (inst *Client) GetPaginatedPointsByDeviceUUID(hostUUID, deviceUUID string, limit, offset int, search string) (*dto.PaginationResponse, error) {
 	requestURL := fmt.Sprintf("/host/ros/api/points/paginate?with_tags=true&with_meta_tags=true&with_priority=true&device_uuid=%v&limit=%v&offset=%v", deviceUUID, limit, offset)
 	if search != "" {
