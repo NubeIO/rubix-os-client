@@ -190,6 +190,17 @@ func (inst *Client) FFGetPluginSchemaNetwork(hostUUID, pluginName string) ([]byt
 	return resp.Body(), nil
 }
 
+func (inst *Client) GetModuleSchemaNetwork(hostUUID, pluginName string) ([]byte, error) {
+	url := fmt.Sprintf("/host/ros/api/modules/%s/api/networks/schema", pluginName)
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetHeader("X-Host", hostUUID).
+		Get(url))
+	if err != nil {
+		return nil, err
+	}
+	return resp.Body(), nil
+}
+
 func (inst *Client) FFUpdateNetworkTag(hostUUID, networkUUID string, body []model.Tag) ([]model.Tag, error) {
 	url := fmt.Sprintf("/host/ros/api/networks/%s/tags", networkUUID)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().

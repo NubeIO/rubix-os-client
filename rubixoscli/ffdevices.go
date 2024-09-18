@@ -122,6 +122,17 @@ func (inst *Client) FFGetPluginSchemaDevice(hostUUID, pluginName string) ([]byte
 	return resp.Body(), nil
 }
 
+func (inst *Client) GetModuleSchemaDevice(hostUUID, pluginName string) ([]byte, error) {
+	url := fmt.Sprintf("/host/ros/api/modules/%s/api/devices/schema", pluginName)
+	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
+		SetHeader("X-Host", hostUUID).
+		Get(url))
+	if err != nil {
+		return nil, err
+	}
+	return resp.Body(), nil
+}
+
 func (inst *Client) UpdateDeviceTag(hostUUID, deviceUUID string, body []model.Tag) ([]model.Tag, error) {
 	url := fmt.Sprintf("/host/ros/api/devices/%s/tags", deviceUUID)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
