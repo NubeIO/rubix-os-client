@@ -112,7 +112,7 @@ func (inst *Client) DeleteDevice(hostUUID, uuid string) (bool, error) {
 }
 
 func (inst *Client) FFGetPluginSchemaDevice(hostUUID, pluginName string) ([]byte, error) {
-	url := fmt.Sprintf("/host/ros/api/modules/%s/api/devices/schema", pluginName)
+	url := fmt.Sprintf("/host/ros/api/plugins/api/%s/devices/schema", pluginName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("X-Host", hostUUID).
 		Get(url))
@@ -123,7 +123,7 @@ func (inst *Client) FFGetPluginSchemaDevice(hostUUID, pluginName string) ([]byte
 }
 
 func (inst *Client) GetModuleSchemaDevice(hostUUID, pluginName string) ([]byte, error) {
-	url := fmt.Sprintf("/host/ros/api/plugins/api/%s/devices/schema", pluginName)
+	url := fmt.Sprintf("/host/ros/api/modules/%s/api/devices/schema", pluginName)
 	resp, err := nresty.FormatRestyResponse(inst.Rest.R().
 		SetHeader("X-Host", hostUUID).
 		Get(url))
